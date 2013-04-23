@@ -8,7 +8,13 @@
 
     <ui:composition template="../index.xhtml">
         <ui:define name="newContent">
-            <p>Listar Estudantes</p>
+            <p:dataTable value="#{studentMB.all}" var="student">
+                <p:column headerText="Id">#{student.id}</p:column>
+                <p:column headerText="Nome">#{student.fullName}</p:column>
+                <p:column headerText="RG">#{student.rg}</p:column>
+                <p:column headerText="CPF">#{student.cpf}</p:column>
+                <p:column headerText="Sexo">#{student.gender.gender}</p:column>
+            </p:dataTable>
         </ui:define>
     </ui:composition>
     
