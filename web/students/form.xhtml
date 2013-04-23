@@ -17,7 +17,10 @@
     
     <ui:composition template="../index.xhtml">
         <ui:define name="newContent">
-            <p>Adicionar Estudantes</p>
+            <h:form>
+                <h:outputLabel value="Nome: " />
+                <p:inputText value="#{studentMB.student.fullName}"  />
+            </h:form>
         </ui:define>
     </ui:composition>
     
