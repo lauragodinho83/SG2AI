@@ -1,14 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-    </h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <title>Trabalho de PI</title>
+            </f:facet>
+            
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="50" header="Trabalho de PI">
+                    
+                </p:layoutUnit>
+                
+                <p:layoutUnit id="bottom" position="south" size="60">
+                    <h:outputLink value="http://alunos.unipam.edu.br">Portal Acadêmico</h:outputLink>
+                </p:layoutUnit>
+                
+                <p:layoutUnit id="left" position="west" size="300" resizable="true" header="Opções" minSize="200">
+                    <p:menu>
+                        <p:submenu label="Opções Gerais">
+                            <p:menuitem value="Página Inicial" url="#{request.contextPath}/../index.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Estudantes">
+                            <p:menuitem value="Adicionar" url="#{request.contextPath}/../students/add.xhtml" />
+                        </p:submenu>
+                    </p:menu>
+                </p:layoutUnit>
+                
+                <p:layoutUnit id="right" position="east" size="250" header="Outras opções">
+                    <h:outputText value="Conteúdo de outras opções" />
+                </p:layoutUnit>
+                
+                <p:layoutUnit id="center" position="center">
+                    <h:form>
+                        <ui:insert name="newContent">
+                            <p>Página Inicial</p>
+                        </ui:insert>
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+    
 </html>
 
