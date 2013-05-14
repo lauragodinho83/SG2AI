@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h3 class="titulo">Questões</h3>
+            
+            <h:form>
+                <p:growl id="mensagens" showDetail="true" />
+                
+                <p:dialog id="dialogoAlternativa" header="Adicionar alternativa" widgetVar="dialogoAlternativa">
+                    <h:panelGrid columns="1">
+                        <h:outputText value="Título: " />
+                        <p:inputText value="#{questaoMB.alternativa.titulo}" size="90" />
+                        
+                        <h:outputText value="Descrição: " />
+                        <p:inputTextarea value="#{questaoMB.alternativa.descricao}" cols="90" />
+                        
+                        <h:outputText value="Verdadeira: " />
+                        <p:selectOneMenu value="#{questaoMB.alternativa.verdadeira}">
+                            <f:selectItem itemLabel="Não" itemValue="false" />
+                            <f:selectItem itemLabel="Sim" itemValue="true" />
+                        </p:selectOneMenu>
+                        <p:commandButton value="Adicionar" action="#{questaoMB.adicionarAlternativa()}" update="mensagens,dialogoAlternativa,listaAlternativas" style="float: right;" />
+                    </h:panelGrid>
+                </p:dialog>
+                
+                <h:panelGrid columns="1">
+                    <h:outputText value="Enunciado " />
+                    <p:inputTextarea rows="7" cols="100" />
+                    
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Alternativas" />
+                        <p:commandButton icon="ui-icon-plus" onclick="dialogoAlternativa.show();" />
+                    </h:panelGrid>
+                    
+                    <p:accordionPanel multiple="true" id="listaAlternativas" value="#{questaoMB.alternativas}" var="alternativa">
+                        <p:tab title="#{alternativa.titulo}">
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Título: " style="font-weight: bold;" />
+                                <h:outputText value="#{alternativa.titulo}" />
+                                
+                                <h:outputText value="Descrição: " style="font-weight: bold;" />
+                                <h:outputText value="#{alternativa.descricao}" />
+                                
+                                <h:outputText value="Verdadeira: " style="font-weight: bold;" />
+                                <h:outputText value="#{alternativa.verdadeira}" />
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    
+</html>

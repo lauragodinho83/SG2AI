@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h3 class="titulo">Estado</h3>
+            
+            <h:form>
+                <p:growl id="mensagens" showDetail="true" />
+                
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Descrição: " />
+                    <p:inputText value="#{estadoMB.estado.descricao}" />
+                    <p:commandButton value="Salvar" action="#{estadoMB.salvar()}" ajax="false" update="mensagens" />
+                </h:panelGrid>
+                
+                <p:dataTable value="#{estadoMB.obterTodos()}" var="estado" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma estado está cadastrada.">
+                    <p:column headerText="Id">#{estado.id}</p:column>
+                    <p:column headerText="Descrição">#{estado.descricao}</p:column>
+                    <p:column headerText="..." style="width: 7.5%">
+                        <p:commandButton icon="ui-icon-pencil" action="#{estadoMB.editar( estado )}" ajax="false"></p:commandButton>
+                        <p:commandButton icon="ui-icon-close" action="#{estadoMB.excluir( estado.id )}" ajax="false" update="mensagens"></p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    
+</html>
