@@ -11,12 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author jeferson
  */
 @Entity
+
+@NamedQueries({
+    @NamedQuery (name = "Disciplina.findAll", query = "SELECT d FROM Disciplina d"),
+    @NamedQuery (name = "Disciplina.findById", query= "SELECT d FROM Disciplina d WHERE d.id=:id")
+})
 public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
