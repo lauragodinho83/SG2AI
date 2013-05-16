@@ -41,7 +41,10 @@
                     <p:commandButton value="Salvar" action="#{estudanteMB.salvar()}" ajax="false" update="mensagens" />
                 </h:panelGrid>
                 
-                <p:dataTable id="estudantes" var="estudante" value="#{estudanteMB.estudantes}" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhum estudante está cadastrado." rowKey="#{estudante.id}" selection="#{estudanteMB.estudanteSelecionado}" selectionMode="single">
+                <p:dataTable id="estudantes" var="estudante" value="#{estudanteMB.estudantes}" paginator="true" rows="10" 
+                             rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhum estudante está cadastrado." 
+                             rowKey="#{estudante.id}" selection="#{estudanteMB.estudanteSelecionado}" selectionMode="single">
+                    
                     <p:column headerText="Id">#{estudante.id}</p:column>
                     <p:column headerText="Matrícula">#{estudante.matricula}</p:column>
                     <p:column headerText="Nome">#{estudante.nome}</p:column>

@@ -56,8 +56,9 @@ public class Pessoa implements Serializable {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String novoNome) {
+        nome = novoNome;
+        System.out.println("NOMEEE " + getNome());
     }
 
     public Date getDataDeNascimento() {
