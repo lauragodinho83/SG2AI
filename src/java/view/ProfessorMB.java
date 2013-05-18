@@ -7,16 +7,16 @@ package view;
 import controller.ProfessorEJB;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import model.Professor;
 
 /**
  *
  * @author jeferson
  */
-@Named(value = "professorMB")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class ProfessorMB {
 
     public ProfessorMB() {
@@ -28,7 +28,7 @@ public class ProfessorMB {
     private List<Professor> professores;
 
     public List<Professor> getProfessores() {
-        return professores;
+        return professorEJB.obterTodos();
     }
 
     public void setProfessores(List<Professor> professores) {
