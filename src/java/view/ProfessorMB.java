@@ -5,6 +5,7 @@
 package view;
 
 import controller.ProfessorEJB;
+import helper.Mensagem;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -68,5 +69,17 @@ public class ProfessorMB {
 
     public void selecionarProfessor(Professor professor) {
         setProfessorSelecionado(professor);
+    }
+
+    public void editar(Professor professor) {
+        setProfessor(professor);
+    }
+
+    public void excluir(Long id) {
+        System.out.println("excluindo professor " + professor.getNome() + " com id " + id);
+        professorEJB.excluir(id);
+
+
+        Mensagem.sucesso();
     }
 }

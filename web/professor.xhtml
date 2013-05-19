@@ -50,8 +50,8 @@
                     <p:column headerText="Nome">#{professor.nome}</p:column>
                     <p:column headerText="Data de Nascimento">#{professor.dataDeNascimentoFormatada}</p:column>
                     <p:column headerText="..." style="width: 7.5%;">
-                        <p:commandButton icon="ui-icon-pencil" action="#{estudanteMB.editar( estudante )}" ajax="false" />
-                        <p:commandButton icon="ui-icon-close" action="#{estudanteMB.excluir( estudante.id )}" ajax="false" update="mensagens" />
+                        <p:commandButton icon="ui-icon-pencil" action="#{professorMB.editar( professor )}" ajax="false" />
+                        <p:commandButton icon="ui-icon-close" action="#{professorMB.excluir( professor.id )}" ajax="false" update="mensagens" />
                     </p:column>
                 </p:dataTable>
 
