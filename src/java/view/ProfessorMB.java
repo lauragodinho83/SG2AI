@@ -78,8 +78,6 @@ public class ProfessorMB {
     public void excluir(Long id) {
         System.out.println("excluindo professor " + professor.getNome() + " com id " + id);
         professorEJB.excluir(id);
-
-
         Mensagem.sucesso();
     }
 }
