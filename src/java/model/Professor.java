@@ -43,10 +43,6 @@ public class Professor extends Pessoa implements Serializable {
         this.disciplina = disciplina;
     }
 
-    public Professor() {
-        System.out.println("pessoa com nome " + getNome());
-    }
-
     @Override
     public Long getId() {
         return id;
