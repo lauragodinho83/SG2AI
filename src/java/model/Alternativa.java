@@ -53,7 +53,7 @@ public class Alternativa implements Serializable {
         return verdadeira;
     }
     
-    public String getVerdadeira() {
+    public String getVerdadeiraFormatada() {
         if( isVerdadeira() ) {
             return "Sim";
         }

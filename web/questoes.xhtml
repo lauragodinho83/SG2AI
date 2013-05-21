@@ -26,7 +26,10 @@
                             <f:selectItem itemLabel="Não" itemValue="false" />
                             <f:selectItem itemLabel="Sim" itemValue="true" />
                         </p:selectOneMenu>
-                        <p:commandButton value="Adicionar" action="#{questaoMB.adicionarAlternativa()}" update="mensagens,dialogoAlternativa,listaAlternativas" style="float: right;" />
+                        <h:panelGrid columns="2" style="float: right;">
+                            <p:commandButton value="Cancelar" onclick="dialogoAlternativa.hide();" />
+                            <p:commandButton value="Adicionar" action="#{questaoMB.adicionarAlternativa()}" update="mensagens,dialogoAlternativa,listaAlternativas" />
+                        </h:panelGrid>
                     </h:panelGrid>
                 </p:dialog>
                 
@@ -49,7 +52,7 @@
                                 <h:outputText value="#{alternativa.descricao}" />
                                 
                                 <h:outputText value="Verdadeira: " style="font-weight: bold;" />
-                                <h:outputText value="#{alternativa.verdadeira}" />
+                                <h:outputText value="#{alternativa.verdadeiraFormatada}" />
                             </h:panelGrid>
                         </p:tab>
                     </p:accordionPanel>

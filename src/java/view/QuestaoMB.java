@@ -58,6 +58,16 @@ public class QuestaoMB {
     }
     
     public void adicionarAlternativa() {
+        
+        if( alternativa.isVerdadeira() ) {
+            for( Alternativa a : alternativas ) {
+                if( a.isVerdadeira() ) {
+                    Mensagem.erro( "Já existe uma opção verdadeira" );
+                    return;
+                }
+            }
+        }
+        
         alternativas.add( alternativa );
         alternativa = new Alternativa();
         
