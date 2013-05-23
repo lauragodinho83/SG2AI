@@ -74,4 +74,16 @@ public class QuestaoMB {
         Mensagem.sucesso();
     }
     
+    public void editarAlternativa( Alternativa alternativa ) {
+        setAlternativa( alternativa );
+    }
+    
+    public void excluirAlternativa( Alternativa alternativa ) {
+        if( alternativas.remove( alternativa ) ) {
+            Mensagem.sucesso();
+        }
+        else {
+            Mensagem.erro( "Erro ao excluir esta alternativa" );
+        }
+    }
 }
