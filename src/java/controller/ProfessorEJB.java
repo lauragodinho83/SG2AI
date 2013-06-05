@@ -37,6 +37,7 @@ public class ProfessorEJB {
         return professor;
     }
 
+    
     public void excluir(Long id) {
         Professor professor = em.find(Professor.class, id);
 

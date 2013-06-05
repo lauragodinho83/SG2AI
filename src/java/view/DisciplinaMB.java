@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import model.Disciplina;
+import model.Professor;
 
 /**
  *
@@ -21,9 +22,19 @@ public class DisciplinaMB {
 
     public DisciplinaMB() {
     }
-    private Disciplina disciplina = new Disciplina();
     @EJB
+    private Disciplina disciplina = new Disciplina();
     DisciplinaEJB disciplinaEJB;
+    private Disciplina disciplinaSelecionada;
+    private List<Disciplina> disciplinas;
+    
+    public List<Disciplina> getDisciplinas() {
+        return disciplinaEJB.obterTodas();
+    }
+    
+    public void setDisciplinas(List<Disciplina> disciplinas){
+        this.disciplinas = disciplinas;
+    }
 
     public Disciplina getDisciplina() {
         return disciplina;
@@ -33,11 +44,17 @@ public class DisciplinaMB {
         this.disciplina = disciplina;
     }
 
-    public void salvar() {
+    public void salvarDisciplina() {
         disciplina = disciplinaEJB.salvar(disciplina);
     }
 
     public List<Disciplina> findAll() {
         return disciplinaEJB.findAll();
     }
+    
+    public void editar(Disciplina disciplina) {
+        setDisciplina(disciplina);
+    }
+
+    
 }

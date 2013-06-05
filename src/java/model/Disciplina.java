@@ -31,6 +31,8 @@ public class Disciplina implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String descricao;
+    private String nome;
+    
     @ManyToMany(mappedBy = "disciplina")
     private List<Professor> professor;
 
@@ -56,6 +58,15 @@ public class Disciplina implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public String getNomeDisciplina() {
+        return nome;
+    }
+
+    public void setNomeDisciplina(String novoNomeDisciplina) {
+        nome = novoNomeDisciplina;
+        System.out.println("Novo nome da disciplina " + getNomeDisciplina());
     }
 
     @Override

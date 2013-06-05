@@ -15,5 +15,7 @@ public class Mensagem {
     
     private static void mensagem( Severity severity, String titulo, String mensagem ) {
         FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( severity, titulo, mensagem ) );
+    
     }
 }
+

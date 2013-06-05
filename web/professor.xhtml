@@ -12,13 +12,13 @@
             <h:form id="form">
                 <p:growl id="mensagens" showDetail="true" />
 
+                <h:outputLabel value="Matricula: " />
+                <p:inputText value="#{disciplinaMB.disciplina.matricula}" />
+                    <h:outputLabel value="" />
+                    
                 <h:panelGrid columns="3" style="width: 400px;">
                     <h:outputLabel value="Nome: " />
                     <p:inputText value="#{professorMB.professor.nome}" />
-                    <h:outputLabel value="" />
-
-                    <h:outputLabel value="Matricula: " />
-                    <p:inputText value="#{professorMB.professor.matricula}" />
                     <h:outputLabel value="" />
 
                     <h:outputLabel value="Rua: " />

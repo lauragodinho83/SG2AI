@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import model.Disciplina;
 
 /**
@@ -19,6 +20,12 @@ public class DisciplinaEJB {
 
     @PersistenceContext
     EntityManager em;
+    
+    public List<Disciplina> obterTodas() {
+        Query query = em.createQuery("SELECT p FROM Disciplina d");
+
+        return query.getResultList();
+    }
 
     public Disciplina salvar(Disciplina disc) {
         return em.merge(disc);
@@ -33,4 +40,6 @@ public class DisciplinaEJB {
                 .setParameter("id", i)
                 .getSingleResult();
     }
+    
+    
 }
