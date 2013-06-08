@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import controller.DisciplinaEJB;
@@ -55,6 +52,4 @@ public class DisciplinaMB {
     public void editar(Disciplina disciplina) {
         setDisciplina(disciplina);
     }
-
-    
 }
