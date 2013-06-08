@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import model.Cidade;
 
 
+
 /**
  *
  * @author Automacao
