@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h3 class="titulo">Provas</h3>
+            <h:form id="formulario">
+                <p:growl id="mensagens" showDetail="true"/>
+                <h:panelGrid columns="1" style="width: 100%;">
+                    
+                        <h:outputText value="Descrição:"/> 
+                        <p:inputText value="#{provaMB.prova.descricao}"/>
+                   
+                        <h:outputText value="Professor:"/>
+                        <p:selectOneMenu value="#{provaMB.prova.professor.id}">
+                            <f:selectItems value="#{professorMB.obterTodos()}" var="professor" itemLabel="#{professor.nome}" itemValue="#{professor.id}"/>
+                        </p:selectOneMenu>
+                    
+                        <h:outputText value="Disciplina:"/>
+                        <p:selectOneMenu value="#{provaMB.prova.disciplina.id}">
+                            <f:selectItems value="#{disciplinaMB.findAll()}" var="disciplina" itemLabel="#{disciplina.descricao}" itemValue="#{disciplina.id}"/>
+                        </p:selectOneMenu>
+                    
+                        <h:outputText value="Questões:"/>
+                        <p:dataTable value="#{questaoMB.obterTodas()}" var="questao" id="lista" paginator="true" 
+                                     rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma questão está cadastrada."
+                                     selection="#{provaMB.questoesSelecionadas}" rowKey="#{provaMB.questaoSelecionada.id}">
+                            <p:column selectionMode="multiple" style="width: 2%;"/>
+                            <p:column headerText="Id">#{questao.id}</p:column>
+                            <p:column headerText="Enunciado">#{questao.enunciado}</p:column>
+                            <p:column headerText="Veracidade" style="width: 10%">#{questaoMB.renomeaBoolean(questao)}</p:column>
+                            <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto.descricao}</p:column>
+                        </p:dataTable>
+                        <h:outputText value="Valor da Prova:"/>
+                        <p:inputText value="#{provaMB.prova.valor}"/>
+                        
+                        <h:outputText value="Valor por Questão:"/>
+                        <p:inputText value="#{provaMB.prova.valorPorQuestao}"/><br/>
+                        
+                        <p:commandButton value="Salvar" action="#{provaMB.salvarProva()}" style="font-size: 14px;"
+                                     ajax="false" update="mensagens"/>
+                </h:panelGrid>
+                <h:panelGrid columns="1">
+                    <p:dataTable value="#{provaMB.obterProvas()}" var="prova" id="lista" paginator="true" rows="10" 
+                                 rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma Prova Cadastrada.">
+                        <p:column headerText="Descrição">#{prova.descricao}</p:column>
+                        <p:column headerText="Professor">#{prova.professor.nome}</p:column>
+                        <p:column headerText="Disciplina">#{prova.disciplina.descricao}</p:column>
+                        <p:column headerText="Valor">#{prova.valor}</p:column>
+                    </p:dataTable>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

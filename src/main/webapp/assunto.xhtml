@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+        
+      <ui:composition template="index.xhtml">
+          <ui:define name="conteudo">
+              <h3 class="titulo">Assunto</h3>
+              <h:form>
+                  <p:growl id="mensagens" showDetail="true"/>
+                  <h:panelGrid columns="3">
+                      <h:outputLabel value="Descrição:"/>
+                      <p:inputText value="#{assuntoMB.assunto.descricao}"/>
+                      <p:commandButton value="Salvar" action="#{assuntoMB.salvaAssunto()}" ajax="false" update="mensagens"/>
+                  </h:panelGrid>
+                  
+                  <p:dataTable value="#{assuntoMB.obterTodos()}" var="assunto" id="lista" paginator="true" rows="10"
+                               rowsPerPageTemplate="5,10,15,20" emptyMessage="Nenhum assunto cadastrado.">
+                      <p:column headerText="Id">#{assunto.id}</p:column>
+                      <p:column headerText="Descricao">#{assunto.descricao}</p:column>
+                      <p:column headerText="..." style="width: 7.5%;">
+                          <p:commandButton icon="ui-icon-pencil" action="#{assuntoMB.editarAssunto(assunto)}" ajax="false"></p:commandButton>
+                          <p:commandButton icon="ui-icon-close" action="#{assuntoMB.excluirAssunto(assunto.id)}" ajax="false" update="mensagens"></p:commandButton>
+                      </p:column>
+                  </p:dataTable>
+              </h:form>
+          </ui:define>
+      </ui:composition>
+</html>
