@@ -20,7 +20,10 @@
                     
                     <h:outputLabel value="Cidade: " />
                     <p:selectOneMenu value="#{bairroMB.bairro.cidade.id}">
-                        <f:selectItems value="#{cidadeMB.obterTodos()}" var="cidade" itemLabel="#{cidade.descricao}" itemValue="#{cidade.id}" />
+                        <f:selectItems value="#{cidadeMB.obterTodos()}" 
+                                       var="cidade" 
+                                       itemLabel="#{cidade.descricao}" 
+                                       itemValue="#{cidade.id}" />
                     </p:selectOneMenu>
                     <p:commandButton value="Salvar" action="#{bairroMB.salvar()}" ajax="false" update="mensagens" />
                 </h:panelGrid>

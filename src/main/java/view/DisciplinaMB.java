@@ -5,18 +5,20 @@
 package view;
 
 import controller.DisciplinaEJB;
+import helper.Mensagem;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
 import model.Disciplina;
 
 /**
  *
  * @author jeferson
  */
-@Named(value = "disciplinaMB")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class DisciplinaMB {
 
     public DisciplinaMB() {
@@ -34,10 +36,20 @@ public class DisciplinaMB {
     }
 
     public void salvar() {
-        disciplina = disciplinaEJB.salvar(disciplina);
+        disciplinaEJB.salvar(disciplina);
+        setDisciplina(new Disciplina());
     }
 
     public List<Disciplina> findAll() {
         return disciplinaEJB.findAll();
+    }
+
+    public void editar(Disciplina disciplina) {
+        setDisciplina(disciplina);
+    }
+
+    public void excluir(Long id) {
+        disciplinaEJB.excluir(id);
+        Mensagem.sucesso();
     }
 }
