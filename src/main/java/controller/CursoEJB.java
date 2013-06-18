@@ -34,7 +34,7 @@ public class CursoEJB {
     }
     
     
-     public Curso findById(Integer i) {
+     public Curso findById(Long i) {
         return (Curso) em.createQuery("SELECT c FROM Curso c WHERE c.id=:id")
                 .setParameter("id", i)
                 .getSingleResult();

@@ -19,7 +19,7 @@
 
                     <h:outputLabel value="Curso: " />
                     <p:selectOneMenu value="#{disciplinaMB.disciplina.curso.id}">
-                        <f:selectItems value="#{cursoMB.findAll()}" 
+                        <f:selectItems value="#{cursoMB.findAll()}"
                                        var="cursos" 
                                        itemLabel="#{cursos.descricao}" 
                                        itemValue="#{cursos.id}" />
@@ -36,7 +36,7 @@
                     <p:column headerText="Curso">#{disciplinaVar.curso.descricao}</p:column>
 
                     <p:column headerText="..." style="width: 7.5%;">
-                        <p:commandButton icon="ui-icon-pencil" action="#{disciplinaMB.editar( disciplina )}" ajax="false"></p:commandButton>
+                        <p:commandButton icon="ui-icon-pencil" action="#{disciplinaMB.editar( disciplinaVar )}" ajax="false"></p:commandButton>
                         <p:commandButton icon="ui-icon-close" action="#{disciplinaMB.excluir( disciplinaVar.id )}" ajax="false" update="mensagens"></p:commandButton>
 
                     </p:column>

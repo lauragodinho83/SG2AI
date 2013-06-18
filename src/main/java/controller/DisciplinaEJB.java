@@ -5,9 +5,11 @@
 package controller;
 
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import model.Curso;
 import model.Disciplina;
 
 /**
@@ -19,9 +21,17 @@ public class DisciplinaEJB {
 
     @PersistenceContext
     EntityManager em;
-
+    
+    @EJB
+    private CursoEJB cursoEJB;
 
     public void salvar(Disciplina disc) {
+        
+        Long idCurso = disc.getCurso().getId();
+        Curso curso = cursoEJB.findById(idCurso);
+        
+        disc.setCurso( curso );
+        
         System.out.println("EJB metodo salvar ID " + disc.getCurso().getId() + "do curso " + disc.getCurso().getDescricao());
         em.merge(disc);
     

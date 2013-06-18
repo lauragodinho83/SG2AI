@@ -7,6 +7,7 @@ package view;
 import controller.DisciplinaEJB;
 import helper.Mensagem;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -23,10 +24,15 @@ public class DisciplinaMB {
 
     public DisciplinaMB() {
     }
-    private Disciplina disciplina = new Disciplina();
+    private Disciplina disciplina;
     @EJB
     DisciplinaEJB disciplinaEJB;
-
+    
+    @PostConstruct
+    public void inicializar() {
+        disciplina = new Disciplina();
+    }
+    
     public Disciplina getDisciplina() {
         return disciplina;
     }
