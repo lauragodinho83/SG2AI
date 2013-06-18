@@ -11,15 +11,13 @@
             <h3 class="titulo">Questões</h3>
             
             <h:form id="formulario">
-                <p:growl id="mensagens" showDetail="true" />
-                                                
                 <h:panelGrid columns="1" style="width: 100%;">
                     <h:panelGrid columns="3">
                         <h:panelGrid columns="1">
                             <h:outputText value="Enunciado:" />
                             <p:inputTextarea rows="7" cols="100" value="#{questaoMB.questao.enunciado}"/>
                         </h:panelGrid>
-                        <h:panelGrid columns="1" style="margin-top: -70px;">
+                        <h:panelGrid columns="1" style="margin-top: -70px; width: 130px;">
                             <h:outputText value="Veracidade:" />
                             <p:selectBooleanButton offLabel="Falsa" onLabel="Verdadeira" onIcon="ui-icon-check" 
                                                    offIcon="ui-icon-close" value="#{questaoMB.questao.veracidade}"/>
@@ -31,9 +29,9 @@
                             </p:selectOneMenu>
                         </h:panelGrid>
                     </h:panelGrid>
-                    <h:panelGrid columns="1" style="margin-left: 4px;">
-                        <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" style="font-size: 14px;" 
-                                         ajax="false" update="mensagens"/> 
+                    <h:panelGrid columns="2" style="margin-left: 4px;">
+                        <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" style="font-size: 14px;" ajax="false" update="mensagens"/>
+                        <p:commandButton value="Copiar da Área de Transferência" action="#{questaoMB.salvarQuestoesDaAreaDeTransferencia()}" style="font-size: 14px;" />
                     </h:panelGrid>
                     <h:panelGrid columns="1" style="width: 99%; margin: 2px 0 0 5px;">
                         <p:dataTable value="#{questaoMB.obterTodas()}" var="questao" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma questão está cadastrada.">
