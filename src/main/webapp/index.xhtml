@@ -4,7 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <h:head>
         <title>Trabalho PI</title>
         <link href="#{request.contextPath}/css/estilos.css" rel="stylesheet" type="text/css" />
@@ -18,8 +18,10 @@
                         <p:submenu label="Menu Principal" styleClass="itemMenu">
                             <p:menuitem styleClass="itemMenu" value="Página Inicial" url="index.xhtml"></p:menuitem>
                         </p:submenu>
-                        
+
                         <p:submenu label="Cadastros Gerais" styleClass="itemMenu">
+                            <p:menuitem styleClass="itemMenu" value="Curso" url="curso.xhtml"></p:menuitem>
+                            <p:menuitem styleClass="itemMenu" value="Disciplina" url="disciplina.xhtml"></p:menuitem>
                             <p:menuitem styleClass="itemMenu" value="Professor" url="professor.xhtml"></p:menuitem>
                             <p:menuitem styleClass="itemMenu" value="Questões" url="questoes.xhtml"></p:menuitem>
                             <p:menuitem styleClass="itemMenu" value="Estudantes" url="estudantes.xhtml"></p:menuitem>
@@ -46,6 +48,8 @@
                 </p:layoutUnit>
             </p:layout>
         </h:form>
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
     </h:body>
-    
+
 </html>
