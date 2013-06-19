@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.ProfessorEJB;
@@ -26,61 +22,77 @@ public class ProfessorMB {
     ProfessorEJB professorEJB;
     private Professor professor = new Professor();
     private Professor professorSelecionado;
-    private List<Professor> professores;
 
-    public List<Professor> getProfessores() {
+
+    public List < Professor > getProfessores() 
+    {
         return professorEJB.obterTodos();
     }
-
-    public void setProfessores(List<Professor> professores) {
-        this.professores = professores;
-
-    }
-
-    public ProfessorEJB getProfessorEJB() {
-        return professorEJB;
-    }
-
-    public void setProfessorEJB(ProfessorEJB professorEJB) {
-        this.professorEJB = professorEJB;
-    }
-
-    public Professor getProfessorSelecionado() {
+  
+    
+    
+    public Professor getProfessorSelecionado() 
+    {
         return professorSelecionado;
     }
 
-    public void setProfessorSelecionado(Professor professorSelecionado) {
+    
+    
+    public void setProfessorSelecionado( Professor professorSelecionado ) 
+    {
         this.professorSelecionado = professorSelecionado;
     }
+    
+    
 
-    public Professor getProfessor() {
+    public Professor getProfessor()
+    {
         return professor;
     }
+    
+    
 
-    public void setProfessor(Professor professor) {
+    public void setProfessor( Professor professor ) 
+    {
         this.professor = professor;
 
     }
 
-    public void salvarProfessor() {
-        professor = professorEJB.salvar(professor);
-        System.out.println("salvando professor " + professor.getNome() + "com ID " + professor.getId());
+    
+    
+    public void salvarProfessor() 
+    {
+        professor = professorEJB.salvar( professor );
     }
 
-    public void selecionarProfessor(Professor professor) {
-        setProfessorSelecionado(professor);
+    
+    
+    public void selecionarProfessor( Professor professor ) 
+    {
+        setProfessorSelecionado( professor );
+    }
+    
+    
+
+    public void editar( Professor professor )
+    {
+        setProfessor( professor );
     }
 
-    public void editar(Professor professor) {
-        setProfessor(professor);
-    }
-
-    public void excluir(Long id) {
-        System.out.println("excluindo professor " + professor.getNome() + " com id " + id);
-        professorEJB.excluir(id);
+    
+    
+    public void excluir( Long id )
+    {
+        professorEJB.excluir( id );
         Mensagem.sucesso();
     }
-    public List<Professor> obterTodos(){
+    
+    
+    
+    public List < Professor > obterTodos()
+    {
         return professorEJB.obterTodos();
     }
+    
+    
 }
