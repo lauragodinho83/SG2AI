@@ -6,7 +6,6 @@ package view;
 
 import controller.AssuntoEJB;
 import controller.QuestaoEJB;
-import helper.AreaDeTransferencia;
 import helper.Mensagem;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,14 +55,6 @@ public class QuestaoMB {
         questaoEJB.salvar(questao);
         setQuestao(new Questao());
         Mensagem.sucesso();
-    }
-    
-    public void salvarQuestoesDaAreaDeTransferencia() {
-        //AreaDeTransferencia adt = new AreaDeTransferencia();
-        
-        //String conteudo = adt.getClipboardContents();
-        
-        Mensagem.erro( "Ainda não está funcionando." );
     }
     
     public List<Questao> obterTodas(){
