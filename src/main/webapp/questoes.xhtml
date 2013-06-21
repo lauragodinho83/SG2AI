@@ -10,7 +10,7 @@
         <ui:define name="conteudo">
             <h3 class="titulo">Questões</h3>
             
-            <h:form id="formulario" enctype="multipart/form-data">
+            <h:form id="formulario">
                 <p:growl id="messages" showDetail="true"/>
                 
                 <p:dialog width="500px" height="300px" resizable="false" header="Assistente de Importação" widgetVar="dialogoAssistente">
@@ -29,7 +29,11 @@
                         <p:tab id="selecao" title="Seleção">
                             <h:outputText value="Agora é a hora de você selecionar o seu arquivo do Microsoft Excel 97-2010." />
                             <br /><br />
-                            <p:fileUpload required="true" update="messages" requiredMessage="Você deve selecionar um arquivo." invalidFileMessage="Formato do arquivo é inválido." invalidSizeMessage="Tamanho do arquivo ultrapassou o limite de 100 KB." sizeLimit="100000" fileUploadListener="#{assistenteImportacaoExcel.upload}" mode="advanced" allowTypes="/(\.|\/)(xls|xlsx)$/" />
+                            <h:form id="uploadForm" enctype="multipart/form-data">
+                                <p:fileUpload value="#{assistenteImportacaoExcel.arquivo}" mode="simple" />
+                                
+                                <p:commandButton value="Enviar" actionListener="#{assistenteImportacaoExcel.upload}" ajax="false" />
+                            </h:form>
                         </p:tab>
                     </p:wizard>
                 </p:dialog>

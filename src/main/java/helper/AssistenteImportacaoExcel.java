@@ -8,22 +8,34 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.Part;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 @ManagedBean
 @SessionScoped
 public class AssistenteImportacaoExcel implements Serializable {
     
     private String destino = "/tmp/upload/";
-    
-    public void upload( FileUploadEvent event ) {
-        Mensagem.sucesso();
+    private UploadedFile arquivo;
+
+    public UploadedFile getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(UploadedFile arquivo) {
+        this.arquivo = arquivo;
+    }
+
+    public void upload() {
         
-        try {
-            copiarArquivo( event.getFile().getFileName(), event.getFile().getInputstream() );
+        System.out.println( arquivo.getFileName() );
+        
+        if( arquivo != null ) {
+            Mensagem.sucesso();
         }
-        catch( IOException e ) {
-            e.printStackTrace();
+        else {
+            Mensagem.erro( "Upload falhou" );
         }
     }
     
