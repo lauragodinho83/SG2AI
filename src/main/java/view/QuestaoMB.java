@@ -21,7 +21,7 @@ import model.Questao;
  *
  * @author daniel
  */
-@ManagedBean
+@ManagedBean( name = "questaoMB" )
 @SessionScoped
 public class QuestaoMB {
     

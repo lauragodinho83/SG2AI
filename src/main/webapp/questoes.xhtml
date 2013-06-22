@@ -10,33 +10,52 @@
         <ui:define name="conteudo">
             <h3 class="titulo">Questões</h3>
             
-            <h:form id="formulario">
-                <p:growl id="messages" showDetail="true"/>
-                
-                <p:dialog width="500px" height="300px" resizable="false" header="Assistente de Importação" widgetVar="dialogoAssistente">
+            <p:dialog width="500px" resizable="false" header="Assistente de Importação" widgetVar="dialogoAssistente">
+                <h:form enctype="multipart/form-data">
                     <p:wizard widgetVar="wizard">
                         <p:tab id="introducao" title="Introdução">
-                            <h:outputText value="Esse assistente guiará você através dos passos necessários para realizar o cadastro das questões via um arquivo do Microsoft Excel 97-2010." />
+                            <h:outputText value="Esse assistente guiará você através dos passos necessários para realizar o cadastro das questões via uma planilha do Google Drive." />
                             <br /><br />
                             <h:outputText value="Etapas necessárias: " style="font-weight: bold;" />
                             <ul>
+                                <li>Autenticação</li>
                                 <li>Seleção</li>
-                                <li>Validação</li>
                                 <li>Inserção</li>
                             </ul>
                         </p:tab>
-                        
-                        <p:tab id="selecao" title="Seleção">
-                            <h:outputText value="Agora é a hora de você selecionar o seu arquivo do Microsoft Excel 97-2010." />
+
+                        <p:tab id="selecao" title="Autenticação">
+                            <h:outputText value="Agora é a hora de você se autenticar nos serviços do Google." />
                             <br /><br />
-                            <h:form id="uploadForm" enctype="multipart/form-data">
-                                <p:fileUpload value="#{assistenteImportacaoExcel.arquivo}" mode="simple" />
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Usuário: " />
+                                <p:inputText value="#{googleDocs.username}" required="true" requiredMessage="Você deve preencher o campo Usuário" />
+                                <h:outputText value=" sg2ai.system@gmail.com" />
                                 
-                                <p:commandButton value="Enviar" actionListener="#{assistenteImportacaoExcel.upload}" ajax="false" />
-                            </h:form>
+                                <h:outputText value="Senha: " />
+                                <p:inputText value="#{googleDocs.password}" required="true" requiredMessage="Você deve preencher o campo Senha" />
+                                <h:outputText value=" sucesso@123" />
+                            </h:panelGrid>
+                        </p:tab>
+                        
+                        <p:tab title="Seleção">
+                            <h:outputText value="Nesta etapa você seleciona a planilha que será utilizada como fonte das questões." />
+                            <br /><br />
+                            <p:selectOneMenu value="#{googleDocs.planilha}">
+                                <f:selectItems value="#{googleDocs.obterTitulosDasPlanilhas()}" var="planilha" itemLabel="#{planilha}" itemValue="#{planilha}" />
+                            </p:selectOneMenu>
+                        </p:tab>
+                        
+                        <p:tab title="Inserção">
+                            <h:outputText value="Agora basta inserir. Todas as questões localizadas nas planilhas serão inseridas no banco de dados." />
+                            <br /><br />
+                            <p:commandButton value="Inserir" action="#{googleDocs.finalizar()}" oncomplete="dialogoAssistente.hide();" update="@all" />
                         </p:tab>
                     </p:wizard>
-                </p:dialog>
+                </h:form>
+            </p:dialog>
+            
+            <h:form id="formulario">
                 <h:panelGrid columns="1" style="width: 100%;">
                     <h:panelGrid columns="3">
                         <h:panelGrid columns="1">
@@ -56,8 +75,8 @@
                         </h:panelGrid>
                     </h:panelGrid>
                     <h:panelGrid columns="2" style="margin-left: 4px;">
-                        <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" style="font-size: 14px;" ajax="false" update="mensagens"/>
-                        <p:commandButton value="Importar do Excel" style="font-size: 14px;" onclick="dialogoAssistente.show();" />
+                        <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" style="font-size: 14px;" ajax="false" update="mensagens,lista"/>
+                        <p:commandButton value="Importar do Google Drive" style="font-size: 14px;" onclick="dialogoAssistente.show();" />
                     </h:panelGrid>
                     <h:panelGrid columns="1" style="width: 99%; margin: 2px 0 0 5px;">
                         <p:dataTable value="#{questaoMB.obterTodas()}" var="questao" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma questão está cadastrada.">
