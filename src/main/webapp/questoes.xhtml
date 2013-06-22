@@ -86,7 +86,7 @@
                             <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto.descricao}</p:column>
                             <p:column headerText="..." style="width: 7.5%">
                                 <p:commandButton icon="ui-icon-pencil" action="#{questaoMB.editar(questao)}" ajax="false"></p:commandButton>
-                                <p:commandButton icon="ui-icon-close" action="#{questaoMB.excluir(questao.id)}" ajax="false" update="mensagens"></p:commandButton>
+                                <p:commandButton icon="ui-icon-close" action="#{questaoMB.excluir(questao.id)}" ajax="false"></p:commandButton>
                             </p:column>
                         </p:dataTable>
                     </h:panelGrid>
