@@ -93,8 +93,8 @@ public class MySpreadsheetIntegration implements Serializable {
         
         for( ListEntry linha : listFeed.getEntries() ) {
             
-            String veracidade = linha.getCustomElements().getValue( "veracidade" );
-            String descricao  = linha.getCustomElements().getValue( "descrição" );
+            String veracidade = linha.getCustomElements().getValue( "veracidade" ).trim();
+            String descricao  = linha.getCustomElements().getValue( "descrição" ).trim();
             Questao questao = new Questao();
             
             if( veracidade.startsWith( "V" ) ) {
