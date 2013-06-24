@@ -11,8 +11,6 @@
             <h3 class="titulo">Bairro</h3>
             
             <h:form>
-                <p:growl id="mensagens" showDetail="true" />
-                
                 <h:panelGrid columns="3">
                     <h:outputLabel value="Descrição: " />
                     <p:inputText value="#{bairroMB.bairro.descricao}" />
@@ -25,7 +23,7 @@
                                        itemLabel="#{cidade.descricao}" 
                                        itemValue="#{cidade.id}" />
                     </p:selectOneMenu>
-                    <p:commandButton value="Salvar" action="#{bairroMB.salvar()}" ajax="false" update="mensagens" />
+                    <p:commandButton value="Salvar" action="#{bairroMB.salvar()}" ajax="false" />
                 </h:panelGrid>
                 
                 <p:dataTable value="#{bairroMB.obterTodos()}" var="bairro" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhum bairro está cadastrado.">
@@ -34,7 +32,7 @@
                     <p:column headerText="Cidade">#{bairro.cidade.descricao}</p:column>
                     <p:column headerText="..." style="width: 7.5%">
                         <p:commandButton icon="ui-icon-pencil" action="#{bairroMB.editar( bairro )}" ajax="false"></p:commandButton>
-                        <p:commandButton icon="ui-icon-close" action="#{bairroMB.excluir( bairro.id )}" ajax="false" update="mensagens"></p:commandButton>
+                        <p:commandButton icon="ui-icon-close" action="#{bairroMB.excluir( bairro.id )}" ajax="false"></p:commandButton>
                     </p:column>
                 </p:dataTable>
             </h:form>

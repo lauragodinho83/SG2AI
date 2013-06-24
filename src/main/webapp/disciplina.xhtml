@@ -10,8 +10,6 @@
         <ui:define name="conteudo">
             <h3 class="titulo">Professores</h3>
             <h:form id="form">
-                <p:growl id="mensagens" showDetail="true" />
-
                 <h:panelGrid columns="3" style="width: 400px;">
                     <h:outputLabel value="Nome: " />
                     <p:inputText value="#{disciplinaMB.disciplina.descricao}" />
@@ -25,7 +23,7 @@
                                        itemValue="#{cursos.id}" />
                     </p:selectOneMenu>
 
-                    <p:commandButton value="Salvar" action="#{disciplinaMB.salvar()}" ajax="false" update="mensagens" />
+                    <p:commandButton value="Salvar" action="#{disciplinaMB.salvar()}" ajax="false" />
                 </h:panelGrid>
 
 
@@ -37,7 +35,7 @@
 
                     <p:column headerText="..." style="width: 7.5%;">
                         <p:commandButton icon="ui-icon-pencil" action="#{disciplinaMB.editar( disciplinaVar )}" ajax="false"></p:commandButton>
-                        <p:commandButton icon="ui-icon-close" action="#{disciplinaMB.excluir( disciplinaVar.id )}" ajax="false" update="mensagens"></p:commandButton>
+                        <p:commandButton icon="ui-icon-close" action="#{disciplinaMB.excluir( disciplinaVar.id )}" ajax="false"></p:commandButton>
 
                     </p:column>
                 </p:dataTable>

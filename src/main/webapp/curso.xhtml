@@ -10,14 +10,12 @@
             <h3 class="titulo">Curso</h3>
 
             <h:form>
-                <p:growl id="mensagens" showDetail="true" />
-
                 <h:panelGrid columns="3">
                     <h:outputLabel value="Descrição: " />
                     <p:inputText value="#{cursoMB.curso.descricao}" />
                     <h:outputLabel value="" />
 
-                    <p:commandButton value="Salvar" action="#{cursoMB.salvar()}" ajax="false" update="mensagens" />
+                    <p:commandButton value="Salvar" action="#{cursoMB.salvar()}" ajax="false" />
                 </h:panelGrid>
 
                 <p:dataTable value="#{cursoMB.findAll()}" var="cursoVar" id="lista" paginator="true" rows="10" 
@@ -27,7 +25,7 @@
                     <p:column headerText="Descrição">#{cursoVar.descricao}</p:column>
                     <p:column headerText="..." style="width: 7.5%">
                         <p:commandButton icon="ui-icon-pencil" action="#{cursoMB.editar( cursoVar )}" ajax="false"></p:commandButton>
-                        <p:commandButton icon="ui-icon-close" action="#{cursoMB.excluir( cursoVar.id )}" ajax="false" update="mensagens"></p:commandButton>
+                        <p:commandButton icon="ui-icon-close" action="#{cursoMB.excluir( cursoVar.id )}" ajax="false"></p:commandButton>
                     </p:column>
                 </p:dataTable>
             </h:form>

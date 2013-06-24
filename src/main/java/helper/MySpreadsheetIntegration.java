@@ -95,6 +95,8 @@ public class MySpreadsheetIntegration implements Serializable {
             
             String veracidade = linha.getCustomElements().getValue( "veracidade" ).trim();
             String descricao  = linha.getCustomElements().getValue( "descrição" ).trim();
+            String assunto  = linha.getCustomElements().getValue( "assunto" ).trim();
+            
             Questao questao = new Questao();
             
             if( veracidade.startsWith( "V" ) ) {
@@ -109,6 +111,13 @@ public class MySpreadsheetIntegration implements Serializable {
             }
             else {
                 questao.setEnunciado( "Qual a resposta para a vida, o universo e tudo o mais?" );
+            }
+            
+            if( !assunto.isEmpty() ) {
+                questao.setAssunto( assunto );
+            }
+            else {
+                questao.setAssunto( "Indefinido" );
             }
             
             questaoController.salvar( questao );

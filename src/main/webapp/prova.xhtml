@@ -14,7 +14,6 @@ and open the template in the editor.
         <ui:define name="conteudo">
             <h3 class="titulo">Provas</h3>
             <h:form id="formulario">
-                <p:growl id="mensagens" showDetail="true"/>
                 <h:panelGrid columns="1" style="width: 100%;">
                     
                         <h:outputText value="Descrição:"/> 
@@ -38,7 +37,7 @@ and open the template in the editor.
                             <p:column headerText="Id">#{questao.id}</p:column>
                             <p:column headerText="Enunciado">#{questao.enunciado}</p:column>
                             <p:column headerText="Veracidade" style="width: 10%">#{questaoMB.renomeaBoolean(questao)}</p:column>
-                            <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto.descricao}</p:column>
+                            <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto}</p:column>
                         </p:dataTable>
                         <h:outputText value="Valor da Prova:"/>
                         <p:inputText value="#{provaMB.prova.valor}"/>
@@ -47,7 +46,7 @@ and open the template in the editor.
                         <p:inputText value="#{provaMB.prova.valorPorQuestao}"/><br/>
                         
                         <p:commandButton value="Salvar" action="#{provaMB.salvarProva()}" style="font-size: 14px;"
-                                     ajax="false" update="mensagens"/>
+                                     ajax="false" />
                 </h:panelGrid>
                 <h:panelGrid columns="1">
                     <p:dataTable value="#{provaMB.obterProvas()}" var="prova" id="lista" paginator="true" rows="10" 
