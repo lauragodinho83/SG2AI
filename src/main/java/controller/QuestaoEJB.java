@@ -22,6 +22,8 @@ public class QuestaoEJB {
     EntityManager em;
     
     public void salvar( Questao questao ) {
+        System.out.println("Salvando Questão EJB");
+        
         em.merge( questao );
     }
     

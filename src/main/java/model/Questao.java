@@ -5,14 +5,10 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,13 +22,9 @@ public class Questao implements Serializable {
     private Long id;
     private String enunciado;
     private boolean veracidade;
-    @ManyToOne
-    private Assunto assunto;
-    @ManyToMany(mappedBy = "questao")
-    private List<Prova> prova;
+    private String assunto;
     
     public Questao() {
-        setAssunto(new Assunto());
     }
     
     public Long getId() {
@@ -41,14 +33,6 @@ public class Questao implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Prova> getProva() {
-        return prova;
-    }
-
-    public void setProva(List<Prova> prova) {
-        this.prova = prova;
     }
     
     public String getEnunciado() {
@@ -67,11 +51,11 @@ public class Questao implements Serializable {
         this.veracidade = veracidade;
     }
 
-    public Assunto getAssunto() {
+    public String getAssunto() {
         return assunto;
     }
 
-    public void setAssunto(Assunto assunto) {
+    public void setAssunto(String assunto) {
         this.assunto = assunto;
     }
 

@@ -4,32 +4,26 @@
  */
 package view;
 
-import controller.AssuntoEJB;
 import controller.QuestaoEJB;
 import helper.Mensagem;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import model.Assunto;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 import model.Questao;
 
 /**
  *
  * @author daniel
  */
-@ManagedBean( name = "questaoMB" )
-@SessionScoped
+@Named( value = "questaoMB" )
+@ViewScoped
 public class QuestaoMB {
     
     @EJB
     QuestaoEJB questaoEJB;
     private Questao questao;
-
-    private Assunto assuntosSelecionados;
     
     public QuestaoMB() {
         questao = new Questao();       
@@ -42,16 +36,11 @@ public class QuestaoMB {
     public void setQuestao(Questao questao) {
         this.questao = questao;
     }
-
-    public Assunto getAssuntosSelecionados() {
-        return assuntosSelecionados;
-    }
-
-    public void setAssuntosSelecionados(Assunto assuntosSelecionados) {
-        this.assuntosSelecionados = assuntosSelecionados;
-    }
     
-    public void salvarQuestao (){
+    public void salvarQuestao () {
+        
+        System.out.println("Salvando questão MB");
+        
         questaoEJB.salvar(questao);
         setQuestao(new Questao());
         Mensagem.sucesso();

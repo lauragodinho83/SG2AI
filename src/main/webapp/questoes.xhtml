@@ -11,7 +11,7 @@
             <h3 class="titulo">Questões</h3>
             
             <p:dialog width="500px" resizable="false" header="Assistente de Importação" widgetVar="dialogoAssistente">
-                <h:form enctype="multipart/form-data">
+                <h:form>
                     <p:wizard widgetVar="wizard">
                         <p:tab id="introducao" title="Introdução">
                             <h:outputText value="Esse assistente guiará você através dos passos necessários para realizar o cadastro das questões via uma planilha do Google Drive." />
@@ -68,14 +68,12 @@
                                                    offIcon="ui-icon-close" value="#{questaoMB.questao.veracidade}"/>
                         </h:panelGrid>
                         <h:panelGrid columns="1" style="margin-top: -70px;">
-                            <h:outputText value="Assuntos:"/>
-                            <p:selectOneMenu value="#{questaoMB.questao.assunto.id}">
-                                <f:selectItems value="#{assuntoMB.obterTodos()}" var="assunto" itemLabel="#{assunto.descricao}" itemValue="#{assunto.id}"/>
-                            </p:selectOneMenu>
+                            <h:outputText value="Assunto:"/>
+                            <p:inputText value="#{questaoMB.questao.assunto}" />
                         </h:panelGrid>
                     </h:panelGrid>
                     <h:panelGrid columns="2" style="margin-left: 4px;">
-                        <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" style="font-size: 14px;" ajax="false" update="mensagens,lista"/>
+                        <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" style="font-size: 14px;" update="lista"/>
                         <p:commandButton value="Importar do Google Drive" style="font-size: 14px;" onclick="dialogoAssistente.show();" />
                     </h:panelGrid>
                     <h:panelGrid columns="1" style="width: 99%; margin: 2px 0 0 5px;">
@@ -83,7 +81,7 @@
                             <p:column headerText="Id">#{questao.id}</p:column>
                             <p:column headerText="Enunciado">#{questao.enunciado}</p:column>
                             <p:column headerText="Veracidade" style="width: 10%">#{questaoMB.renomeaBoolean(questao)}</p:column>
-                            <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto.descricao}</p:column>
+                            <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto}</p:column>
                             <p:column headerText="..." style="width: 7.5%">
                                 <p:commandButton icon="ui-icon-pencil" action="#{questaoMB.editar(questao)}" ajax="false"></p:commandButton>
                                 <p:commandButton icon="ui-icon-close" action="#{questaoMB.excluir(questao.id)}" ajax="false"></p:commandButton>
