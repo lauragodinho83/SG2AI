@@ -5,7 +5,9 @@
 package view;
 
 import controller.ProvaEJB;
+import controller.QuestaoEJB;
 import helper.Mensagem;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -29,16 +31,22 @@ public class ProvaMB {
 
     @EJB
     ProvaEJB provaEJB;
+    @EJB
+    QuestaoEJB questaoEJB;
     private Prova prova;
     private Questao questaoSelecionada;
-    private Questao[] questoesSelecionadas;
+    private List<Questao> questoesSelecionadas;
     private Professor professorSelecionado;
     private Disciplina disciplinaSelecionada;
             
     public ProvaMB() {
         prova = new Prova();
+        questaoSelecionada = new Questao();
+        questoesSelecionadas = new ArrayList<Questao>();
         prova.setProfessor(new Professor());
         prova.setDisciplina(new Disciplina());
+        prova.setQuestao(questoesSelecionadas);
+        
     }
 
     public Prova getProva() {
@@ -57,11 +65,11 @@ public class ProvaMB {
         this.questaoSelecionada = questaoSelecionada;
     }
 
-    public Questao[] getQuestoesSelecionadas() {
+    public List<Questao> getQuestoesSelecionadas() {
         return questoesSelecionadas;
     }
 
-    public void setQuestoesSelecionadas(Questao[] questoesSelecionadas) {
+    public void setQuestoesSelecionadas(List<Questao> questoesSelecionadas) {
         this.questoesSelecionadas = questoesSelecionadas;
     }
     
@@ -98,5 +106,15 @@ public class ProvaMB {
     public void excluirProva(Long id){
         provaEJB.excluir(id);
         Mensagem.sucesso();
+    }
+    
+    public void addQuestao(){
+        Questao questao = (Questao) questaoEJB.obterPorId(questaoSelecionada.getId());
+        questaoSelecionada = questao;
+        questoesSelecionadas.add(questaoSelecionada);
+    }
+    
+    public List<Questao> obterQuestoes(){
+        return questaoEJB.obterTodos();
     }
 }

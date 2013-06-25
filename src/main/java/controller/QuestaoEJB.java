@@ -38,5 +38,11 @@ public class QuestaoEJB {
         
         return query.getResultList();
     }
+    
+    public Questao obterPorId( Long id ) {
+        Questao questao = em.find( Questao.class, id );
+        
+        return questao;
+    }
 
 }
