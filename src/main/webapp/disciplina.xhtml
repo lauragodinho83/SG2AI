@@ -8,15 +8,16 @@
 
     <ui:composition template="index.xhtml">
         <ui:define name="conteudo">
-            <h3 class="titulo">Professores</h3>
+            <h3 class="titulo">Disciplina</h3>
             <h:form id="form">
                 <h:panelGrid columns="3" style="width: 400px;">
                     <h:outputLabel value="Nome: " />
-                    <p:inputText value="#{disciplinaMB.disciplina.descricao}" />
+                    <p:inputText value="#{disciplinaMB.disciplina.descricao}" style="width: 162px;" />
                     <h:outputLabel value="" />
 
                     <h:outputLabel value="Curso: " />
                     <p:selectOneMenu value="#{disciplinaMB.disciplina.curso.id}">
+                        <f:selectItem itemLabel="" itemValue="" noSelectionOption=""/>
                         <f:selectItems value="#{cursoMB.findAll()}"
                                        var="cursos" 
                                        itemLabel="#{cursos.descricao}" 
@@ -29,13 +30,18 @@
 
                 <p:dataTable value="#{disciplinaMB.findAll()}" var="disciplinaVar" paginator="true" rows="10" 
                              rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma Disciplina está cadastrado.">
+
+                    <f:facet name="header">  
+                        Ajax Sorting  
+                    </f:facet> 
+                    
                     <p:column headerText="ID">#{disciplinaVar.id}</p:column>
                     <p:column headerText="Disciplina">#{disciplinaVar.descricao}</p:column>
                     <p:column headerText="Curso">#{disciplinaVar.curso.descricao}</p:column>
 
                     <p:column headerText="..." style="width: 7.5%;">
                         <p:commandButton icon="ui-icon-pencil" action="#{disciplinaMB.editar( disciplinaVar )}" ajax="false"></p:commandButton>
-                        <p:commandButton icon="ui-icon-close" action="#{disciplinaMB.excluir( disciplinaVar.id )}" ajax="false"></p:commandButton>
+                        <p:commandButton icon="ui-icon-trash" action="#{disciplinaMB.excluir( disciplinaVar.id )}" ajax="false"></p:commandButton>
 
                     </p:column>
                 </p:dataTable>

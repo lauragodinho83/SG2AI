@@ -18,7 +18,7 @@ import model.Questao;
  */
 @ManagedBean( name = "questaoMB" )
 @ViewScoped
-public class QuestaoMB {
+public class QuestaoMB implements java.io.Serializable{
     
     @EJB
     QuestaoEJB questaoEJB;
@@ -36,10 +36,8 @@ public class QuestaoMB {
         this.questao = questao;
     }
     
-    public void salvarQuestao () {
-        
-        System.out.println("Salvando questão MB");
-        
+    public void salvarQuestao () {   
+        System.out.println("Salvar questao , enunciado " + questao.getEnunciado());
         questaoEJB.salvar(questao);
         setQuestao(new Questao());
         Mensagem.sucesso();
@@ -50,6 +48,7 @@ public class QuestaoMB {
     }
     
     public void editar(Questao questao){
+        System.out.println("metodo editar , enunciado = " + questao.getEnunciado());
         setQuestao(questao);
     }
     

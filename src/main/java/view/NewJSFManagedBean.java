@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Named(value = "newJSFManagedBean")
 @SessionScoped
-public class NewJSFManagedBean implements Serializable {
+public class NewJSFManagedBean implements Serializable  {
 
     /**
      * Creates a new instance of NewJSFManagedBean

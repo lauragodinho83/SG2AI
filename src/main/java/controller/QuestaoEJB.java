@@ -21,9 +21,7 @@ public class QuestaoEJB {
     @PersistenceContext
     EntityManager em;
     
-    public void salvar( Questao questao ) {
-        System.out.println("Salvando Questão EJB");
-        
+    public void salvar( Questao questao ) {       
         em.merge( questao );
     }
     

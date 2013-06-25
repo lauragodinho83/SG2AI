@@ -14,7 +14,7 @@ import model.Curso;
  */
 @ManagedBean
 @ViewScoped
-public class CursoMB {
+public class CursoMB implements java.io.Serializable {
 
     public CursoMB() {
     }

@@ -18,7 +18,7 @@ import model.Estudante;
  */
 @ManagedBean
 @ViewScoped
-public class EstudanteMB {
+public class EstudanteMB implements java.io.Serializable {
 
     @EJB
     EstudanteEJB estudanteEJB;

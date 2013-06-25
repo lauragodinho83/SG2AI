@@ -14,7 +14,7 @@ import model.Professor;
  */
 @ManagedBean
 @ViewScoped
-public class ProfessorMB {
+public class ProfessorMB implements java.io.Serializable{
 
     public ProfessorMB() {
     }
@@ -63,6 +63,7 @@ public class ProfessorMB {
     public void salvarProfessor() 
     {
         professor = professorEJB.salvar( professor );
+        setProfessor(new Professor() );
     }
 
     

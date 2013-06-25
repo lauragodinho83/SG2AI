@@ -18,7 +18,7 @@ import model.Estado;
  */
 @ManagedBean
 @ViewScoped
-public class EstadoMB {
+public class EstadoMB implements java.io.Serializable{
 
     @EJB
     EstadoEJB estadoEJB;

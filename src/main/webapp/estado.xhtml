@@ -21,7 +21,7 @@
                     <p:column headerText="Descrição">#{estado.descricao}</p:column>
                     <p:column headerText="..." style="width: 7.5%">
                         <p:commandButton icon="ui-icon-pencil" action="#{estadoMB.editar( estado )}" ajax="false"></p:commandButton>
-                        <p:commandButton icon="ui-icon-close" action="#{estadoMB.excluir( estado.id )}" ajax="false"></p:commandButton>
+                        <p:commandButton icon="ui-icon-trash" action="#{estadoMB.excluir( estado.id )}" ajax="false"></p:commandButton>
                     </p:column>
                 </p:dataTable>
             </h:form>

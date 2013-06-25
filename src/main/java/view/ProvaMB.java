@@ -27,7 +27,7 @@ import model.Questao;
 @Dependent
 @ManagedBean
 @SessionScoped
-public class ProvaMB {
+public class ProvaMB implements java.io.Serializable{
 
     @EJB
     ProvaEJB provaEJB;

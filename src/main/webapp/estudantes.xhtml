@@ -49,7 +49,7 @@
                     <p:column headerText="Data de Nascimento">#{estudante.dataDeNascimentoFormatada}</p:column>
                     <p:column headerText="..." style="width: 7.5%;">
                         <p:commandButton icon="ui-icon-pencil" action="#{estudanteMB.editar( estudante )}" ajax="false" />
-                        <p:commandButton icon="ui-icon-close" action="#{estudanteMB.excluir( estudante.id )}" ajax="false" />
+                        <p:commandButton icon="ui-icon-trash" action="#{estudanteMB.excluir( estudante.id )}" ajax="false" />
                     </p:column>
                 </p:dataTable>
             </h:form>

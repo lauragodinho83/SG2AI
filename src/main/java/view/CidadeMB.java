@@ -19,7 +19,7 @@ import model.Estado;
  */
 @ManagedBean
 @ViewScoped
-public class CidadeMB {
+public class CidadeMB implements java.io.Serializable{
 
     @EJB
     CidadeEJB cidadeEJB;

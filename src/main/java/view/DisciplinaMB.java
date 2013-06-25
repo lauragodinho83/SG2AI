@@ -15,7 +15,7 @@ import model.Disciplina;
  */
 @ManagedBean
 @ViewScoped
-public class DisciplinaMB {
+public class DisciplinaMB implements java.io.Serializable{
 
     public DisciplinaMB() {
     }

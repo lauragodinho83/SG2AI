@@ -18,7 +18,7 @@ import model.Bairro;
  */
 @ManagedBean
 @ViewScoped
-public class BairroMB {
+public class BairroMB implements java.io.Serializable{
 
     @EJB
     BairroEJB bairroEJB;

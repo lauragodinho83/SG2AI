@@ -32,7 +32,7 @@
                     <p:column headerText="Cidade">#{bairro.cidade.descricao}</p:column>
                     <p:column headerText="..." style="width: 7.5%">
                         <p:commandButton icon="ui-icon-pencil" action="#{bairroMB.editar( bairro )}" ajax="false"></p:commandButton>
-                        <p:commandButton icon="ui-icon-close" action="#{bairroMB.excluir( bairro.id )}" ajax="false"></p:commandButton>
+                        <p:commandButton icon="ui-icon-trash" action="#{bairroMB.excluir( bairro.id )}" ajax="false"></p:commandButton>
                     </p:column>
                 </p:dataTable>
             </h:form>

@@ -19,7 +19,7 @@ import model.Disciplina;
  */
 @Named(value = "converterDisciplinaMB")
 @RequestScoped
-public class converterDisciplinaMB implements Converter {
+public class converterDisciplinaMB implements Converter  {
 
     /**
      * Creates a new instance of converterDisciplinaMB

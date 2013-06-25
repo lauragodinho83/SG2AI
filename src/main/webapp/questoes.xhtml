@@ -1,18 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"  
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://java.sun.com/jsf/core">
-    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
     <ui:composition template="index.xhtml">
         <ui:define name="conteudo">
             <h3 class="titulo">Questões</h3>
-            
+
             <p:dialog width="500px" height="200px" resizable="false" header="Assistente de Importação" widgetVar="dialogoAssistente">
                 <h:form>
                     <p:wizard widgetVar="wizard">
+
+
                         <p:tab id="introducao" title="Introdução">
                             <h:outputText value="Esse assistente guiará você através dos passos necessários para realizar o cadastro das questões via uma planilha do Google Drive." />
                             <br /><br />
@@ -24,74 +26,106 @@
                             </ul>
                         </p:tab>
 
+
+
                         <p:tab id="selecao" title="Autenticação">
                             <h:outputText value="Agora é a hora de você se autenticar nos serviços do Google." />
                             <br /><br />
+
                             <h:panelGrid columns="3">
                                 <h:outputText value="Usuário: " />
-                                <p:inputText value="#{googleDocs.username}" required="true" requiredMessage="Você deve preencher o campo Usuário" />
-                                <h:outputText value=" sg2ai.system@gmail.com" />
-                                
+                                <p:inputText value="#{googleDocs.username}" required="true" 
+                                             requiredMessage="Você deve preencher o campo Usuário" />
+                                <h:outputText value=" sg2ai.system@gmail.com" /> 
                                 <h:outputText value="Senha: " />
-                                <p:inputText value="#{googleDocs.password}" required="true" requiredMessage="Você deve preencher o campo Senha" />
+                                <p:inputText value="#{googleDocs.password}" required="true" 
+                                             requiredMessage="Você deve preencher o campo Senha" />
                                 <h:outputText value=" sucesso@123" />
                             </h:panelGrid>
+
                         </p:tab>
-                        
+
+
+
                         <p:tab title="Seleção">
                             <h:outputText value="Nesta etapa você seleciona a planilha que será utilizada como fonte das questões." />
-                            <br /><br />
+                            <br /><br />                          
                             <p:selectOneMenu value="#{googleDocs.planilha}">
-                                <f:selectItems value="#{googleDocs.obterTitulosDasPlanilhas()}" var="planilha" itemLabel="#{planilha}" itemValue="#{planilha}" />
+                                <f:selectItems value="#{googleDocs.obterTitulosDasPlanilhas()}" 
+                                               var="planilha" itemLabel="#{planilha}" itemValue="#{planilha}" />
                             </p:selectOneMenu>
+
                         </p:tab>
-                        
+
+
+
                         <p:tab title="Inserção">
                             <h:outputText value="Agora basta inserir. Todas as questões localizadas nas planilhas serão inseridas no banco de dados." />
                             <br /><br />
-                            <p:commandButton value="Inserir" action="#{googleDocs.finalizar()}" oncomplete="dialogoAssistente.hide();" update="@all" />
+                            <p:commandButton value="Inserir" action="#{googleDocs.finalizar()}" 
+                                             oncomplete="dialogoAssistente.hide();" update="@all" />
                         </p:tab>
+
+
                     </p:wizard>
                 </h:form>
             </p:dialog>
-            
+
             <h:form id="formulario">
                 <h:panelGrid columns="1" style="width: 100%;">
-                    <h:panelGrid columns="3">
+
+                    <h:panelGrid columns="3">   
                         <h:panelGrid columns="1">
                             <h:outputText value="Enunciado:" />
                             <p:inputTextarea rows="7" cols="100" value="#{questaoMB.questao.enunciado}"/>
                         </h:panelGrid>
+
+
+
+
                         <h:panelGrid columns="1" style="margin-top: -70px; width: 130px;">
                             <h:outputText value="Veracidade:" />
                             <p:selectBooleanButton offLabel="Falsa" onLabel="Verdadeira" onIcon="ui-icon-check" 
                                                    offIcon="ui-icon-close" value="#{questaoMB.questao.veracidade}"/>
                         </h:panelGrid>
+
+
                         <h:panelGrid columns="1" style="margin-top: -70px;">
                             <h:outputText value="Assunto:"/>
                             <p:inputText value="#{questaoMB.questao.assunto}" />
                         </h:panelGrid>
                     </h:panelGrid>
-                    <h:panelGrid columns="2" style="margin-left: 4px;">
-                        <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" style="font-size: 14px;" update="lista"/>
+                    <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" ajax="false" />
+
+                    <h:panelGrid columns="1" style="margin-left: 4px;">
+
                         <p:commandButton value="Importar do Google Drive" style="font-size: 14px;" onclick="dialogoAssistente.show();" />
-                    </h:panelGrid>
-                    <h:panelGrid columns="1" style="width: 99%; margin: 2px 0 0 5px;">
-                        <p:dataTable value="#{questaoMB.obterTodas()}" var="questao" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma questão está cadastrada.">
-                            <p:column headerText="Id">#{questao.id}</p:column>
-                            <p:column headerText="Enunciado">#{questao.enunciado}</p:column>
-                            <p:column headerText="Veracidade" style="width: 10%">#{questaoMB.renomeaBoolean(questao)}</p:column>
-                            <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto}</p:column>
-                            <p:column headerText="..." style="width: 7.5%">
-                                <p:commandButton icon="ui-icon-pencil" action="#{questaoMB.editar(questao)}" ajax="false"></p:commandButton>
-                                <p:commandButton icon="ui-icon-close" action="#{questaoMB.excluir(questao.id)}" ajax="false"></p:commandButton>
-                            </p:column>
-                        </p:dataTable>
-                    </h:panelGrid>
-                    
+                    </h:panelGrid>            
+
+
                 </h:panelGrid>
+
+
             </h:form>
+
+            <p:commandButton value="Atualizar Lista" update="lista" icon="ui-icon-arrowrefresh-1-w"/>
+
+            <p:dataTable value="#{questaoMB.obterTodas()}" var="questao" id="lista" 
+                         paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" 
+                         emptyMessage="Nenhuma questão está cadastrada.">
+
+                <p:column headerText="Id">#{questao.id}</p:column>
+                <p:column headerText="Enunciado">#{questao.enunciado}</p:column>
+                <p:column headerText="Veracidade" style="width: 10%">#{questaoMB.renomeaBoolean(questao)}</p:column>
+                <p:column headerText="Assunto"  style="width: 10%">#{questao.assunto}</p:column>
+                <p:column headerText="..." style="width: 7.5%">
+                    <p:commandButton icon="ui-icon-pencil" action="#{questaoMB.editar(questao)}" ajax="false"></p:commandButton>
+                    <p:commandButton icon="ui-icon-trash" action="#{questaoMB.excluir(questao.id)}" ajax="false"></p:commandButton>
+
+                </p:column>
+            </p:dataTable>
+
         </ui:define>
     </ui:composition>
-    
+
 </html>
