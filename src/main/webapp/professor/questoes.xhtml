@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:composition template="index.xhtml">
+    <ui:composition template="../index.xhtml">
         <ui:define name="conteudo">
             <h3 class="titulo">Questões</h3>
 
@@ -26,8 +26,6 @@
                             </ul>
                         </p:tab>
 
-
-
                         <p:tab id="selecao" title="Autenticação">
                             <h:outputText value="Agora é a hora de você se autenticar nos serviços do Google." />
                             <br /><br />
@@ -42,10 +40,7 @@
                                              requiredMessage="Você deve preencher o campo Senha" />
                                 <h:outputText value=" sucesso@123" />
                             </h:panelGrid>
-
                         </p:tab>
-
-
 
                         <p:tab title="Seleção">
                             <h:outputText value="Nesta etapa você seleciona a planilha que será utilizada como fonte das questões." />
@@ -54,10 +49,7 @@
                                 <f:selectItems value="#{googleDocs.obterTitulosDasPlanilhas()}" 
                                                var="planilha" itemLabel="#{planilha}" itemValue="#{planilha}" />
                             </p:selectOneMenu>
-
                         </p:tab>
-
-
 
                         <p:tab title="Inserção">
                             <h:outputText value="Agora basta inserir. Todas as questões localizadas nas planilhas serão inseridas no banco de dados." />
@@ -71,45 +63,33 @@
                 </h:form>
             </p:dialog>
 
-            <h:form id="formulario">
-                <h:panelGrid columns="1" style="width: 100%;">
+            <h:panelGrid columns="1" style="width: 100%;">
 
-                    <h:panelGrid columns="3">   
-                        <h:panelGrid columns="1">
-                            <h:outputText value="Enunciado:" />
-                            <p:inputTextarea rows="7" cols="100" value="#{questaoMB.questao.enunciado}"/>
-                        </h:panelGrid>
-
-
-
-
-                        <h:panelGrid columns="1" style="margin-top: -70px; width: 130px;">
-                            <h:outputText value="Veracidade:" />
-                            <p:selectBooleanButton offLabel="Falsa" onLabel="Verdadeira" onIcon="ui-icon-check" 
-                                                   offIcon="ui-icon-close" value="#{questaoMB.questao.veracidade}"/>
-                        </h:panelGrid>
-
-
-                        <h:panelGrid columns="1" style="margin-top: -70px;">
-                            <h:outputText value="Assunto:"/>
-                            <p:inputText value="#{questaoMB.questao.assunto}" />
-                        </h:panelGrid>
+                <h:panelGrid columns="3">   
+                    <h:panelGrid columns="1">
+                        <h:outputText value="Enunciado:" />
+                        <p:inputTextarea rows="7" cols="100" value="#{questaoMB.questao.enunciado}"/>
                     </h:panelGrid>
-                    <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" ajax="false" />
 
-                    <h:panelGrid columns="1" style="margin-left: 4px;">
-
-                        <p:commandButton value="Importar do Google Drive" style="font-size: 14px;" onclick="dialogoAssistente.show();" />
-                    </h:panelGrid>            
-
-
+                    <h:panelGrid columns="1" style="margin-top: -70px; width: 130px;">
+                        <h:outputText value="Veracidade:" />
+                        <p:selectBooleanButton offLabel="Falsa" onLabel="Verdadeira" onIcon="ui-icon-check" 
+                                               offIcon="ui-icon-close" value="#{questaoMB.questao.veracidade}"/>
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="1" style="margin-top: -70px;">
+                        <h:outputText value="Assunto:"/>
+                        <p:inputText value="#{questaoMB.questao.assunto}" />
+                    </h:panelGrid>
                 </h:panelGrid>
 
-
-            </h:form>
-
-            <p:commandButton value="Atualizar Lista" update="lista" icon="ui-icon-arrowrefresh-1-w"/>
-
+                <h:panelGrid columns="3" style="margin-left: 4px;">
+                    <p:commandButton value="Salvar" action="#{questaoMB.salvarQuestao()}" ajax="false" />
+                    <p:commandButton value="Importar do Google Drive" style="font-size: 14px;" onclick="dialogoAssistente.show();" />
+                    <p:commandButton value="Atualizar Lista" update="lista" icon="ui-icon-arrowrefresh-1-w"/>
+                </h:panelGrid>
+            </h:panelGrid>
+            
             <p:dataTable value="#{questaoMB.obterTodas()}" var="questao" id="lista" 
                          paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" 
                          emptyMessage="Nenhuma questão está cadastrada.">

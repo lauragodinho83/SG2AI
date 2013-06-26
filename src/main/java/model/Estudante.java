@@ -28,6 +28,10 @@ public class Estudante extends Pessoa implements Serializable {
     @ManyToOne
     private Curso curso;
     
+    public Estudante() {
+        curso = new Curso();
+    }
+    
     @Override
     public Long getId() {
         return id;

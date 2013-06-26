@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>SG2AI - Login</title>
+        <link href="#{request.contextPath}/css/estilos.css" rel="stylesheet" type="text/css" />
+    </head>
+    <h:body>
+        <div id="corpo_login">
+            <div id="box_logo">
+                <p:graphicImage value="/img/logo_sg2ai.png" cache="false"/>
+            </div>
+            <div id="formulario_login">
+                <form action="j_spring_security_check" method="post">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Usuário:" class="textoLogin" />
+                        <h:inputText id="j_username" class="campo_login"/>
+                        <h:outputText value="Senha:" class="textoLogin" />
+                        <h:inputSecret id="j_password"  class="campo_login"/>
+                    </h:panelGrid>
+                    <input type="submit" value="Efetuar Login" id="botao_logar"/>   
+                </form>
+
+                <script type="text/javascript"> 
+                    window.onload = function() {
+                    document.getElementById('j_username').focus();
+                        }
+                </script>
+            </div>
+        </div>
+        <div id="rodape">
+            SG2AI - Desenvolvido pelo 5º Período de Sistemas de Informação - UNIPAM
+        </div>
+</h:body>
+</html>
+

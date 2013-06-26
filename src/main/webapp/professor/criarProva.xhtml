@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../index.xhtml">
+        <ui:define name="conteudo">
+            <h3 class="titulo">Provas</h3>
+            <h:form id="formulario">
+                <p:growl id="mensagens" showDetail="true"/>
+                <h:panelGrid columns="1" style="width: 100%;">
+
+                    <h:outputText value="Professor:"/>
+                    <p:selectOneMenu value="#{provaMB.prova.professor.id}">
+                        <f:selectItems value="#{professorMB.obterTodos()}" var="professor" itemLabel="#{professor.nome}" itemValue="#{professor.id}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputText value="Disciplina:"/>
+
+                    <p:selectOneMenu value="#{provaMB.prova.disciplina.id}">
+
+                        <f:selectItems value="#{disciplinaMB.findAll()}" 
+                                       var="disciplinaVarCombo" 
+                                       itemLabel="#{disciplinaVarCombo.descricao}" 
+                                       itemValue="#{disciplinaVarCombo.id}"/>
+
+                    </p:selectOneMenu>
+
+                    <h:outputText value="Valor da Prova:"/>
+                    <p:inputText value="#{provaMB.prova.valor}"/>
+
+                    <p:commandButton value="Salvar" action="#{provaMB.salvarProva()}" style="font-size: 14px;" ajax="false" />
+                </h:panelGrid>
+                
+                <p:dataTable value="#{provaMB.obterProvas()}" var="prova" id="listaProvasCadastradas" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhuma Prova Cadastrada.">
+                    <p:column headerText="Professor">#{prova.professor.nome}</p:column>
+                    <p:column headerText="Disciplina">#{prova.disciplina.descricao}</p:column>
+                    <p:column headerText="Valor">#{prova.valor}</p:column>
+                </p:dataTable>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

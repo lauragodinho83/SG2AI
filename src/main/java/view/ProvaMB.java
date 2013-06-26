@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.ProvaEJB;
@@ -19,10 +15,6 @@ import model.Professor;
 import model.Prova;
 import model.Questao;
 
-/**
- *
- * @author VictorHUgo
- */
 @Named(value = "provaMB")
 @Dependent
 @ManagedBean
@@ -34,18 +26,13 @@ public class ProvaMB implements java.io.Serializable{
     @EJB
     QuestaoEJB questaoEJB;
     private Prova prova;
-    private Questao questaoSelecionada;
-    private List<Questao> questoesSelecionadas;
     private Professor professorSelecionado;
     private Disciplina disciplinaSelecionada;
             
     public ProvaMB() {
         prova = new Prova();
-        questaoSelecionada = new Questao();
-        questoesSelecionadas = new ArrayList<Questao>();
         prova.setProfessor(new Professor());
         prova.setDisciplina(new Disciplina());
-        prova.setQuestao(questoesSelecionadas);
         
     }
 
@@ -55,22 +42,6 @@ public class ProvaMB implements java.io.Serializable{
 
     public void setProva(Prova prova) {
         this.prova = prova;
-    }
-
-    public Questao getQuestaoSelecionada() {
-        return questaoSelecionada;
-    }
-
-    public void setQuestaoSelecionada(Questao questaoSelecionada) {
-        this.questaoSelecionada = questaoSelecionada;
-    }
-
-    public List<Questao> getQuestoesSelecionadas() {
-        return questoesSelecionadas;
-    }
-
-    public void setQuestoesSelecionadas(List<Questao> questoesSelecionadas) {
-        this.questoesSelecionadas = questoesSelecionadas;
     }
     
     public Professor getProfessorSelecionado() {
@@ -106,12 +77,6 @@ public class ProvaMB implements java.io.Serializable{
     public void excluirProva(Long id){
         provaEJB.excluir(id);
         Mensagem.sucesso();
-    }
-    
-    public void addQuestao(){
-        Questao questao = (Questao) questaoEJB.obterPorId(questaoSelecionada.getId());
-        questaoSelecionada = questao;
-        questoesSelecionadas.add(questaoSelecionada);
     }
     
     public List<Questao> obterQuestoes(){

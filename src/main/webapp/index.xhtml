@@ -6,47 +6,51 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>Trabalho PI</title>
+        <title>SG2AI</title>
         <link href="#{request.contextPath}/css/estilos.css" rel="stylesheet" type="text/css" />
     </h:head>
     <h:body>
         <h:form>
             <p:layout fullPage="true">
-                <p:layoutUnit position="north" header="Trabalho PI" styleClass="titulo"></p:layoutUnit>
-                <p:layoutUnit position="west" id="menu" collapsible="true">
-                    <p:panelMenu style="width: 200px;">
-                        <p:submenu label="Menu Principal">
-                            <p:menuitem value="Página Inicial" url="index.xhtml"></p:menuitem>
-                        </p:submenu>
-
-                        <p:submenu label="Cadastros Gerais">
-                            <p:menuitem value="Curso" url="curso.xhtml"></p:menuitem>
-                            <p:menuitem value="Disciplina" url="disciplina.xhtml"></p:menuitem>
-                            <p:menuitem value="Professor" url="professor.xhtml"></p:menuitem>
-                            <p:menuitem value="Questões" url="questoes.xhtml"></p:menuitem>
-                            <p:menuitem value="Estudantes" url="estudantes.xhtml"></p:menuitem>
-                            <p:menuitem value="Bairro" url="bairro.xhtml"></p:menuitem>
-                            <p:menuitem value="Cidade" url="cidade.xhtml"></p:menuitem>
-                            <p:menuitem value="Estado" url="estado.xhtml"></p:menuitem>
-                        </p:submenu>
-                        <p:submenu label="Gerenciar Provas">
-                            <p:menuitem value="Criar Prova" url="geraProva.xhtml"></p:menuitem>
-                        </p:submenu>
-                        <p:submenu label="Aluno">
-                            <p:menuitem value="Realizar Prova" url="realizarProva.xhtml" />
-                        </p:submenu>
-                    </p:panelMenu>
-                </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    
-                    <p:growl autoUpdate="true" showDetail="true" />
-                    
-                    <ui:insert name="conteudo">
-                        <h3 class="titulo">Página Inicial</h3>
-                    </ui:insert>
+                    <p:panel header="SG2AI - Sistema de Gerenciamento e Aplicação de Avaliações Integrado" style="height: 100%;">
+                        <p:menubar style="margin-bottom: 5px;">
+                            <p:menuitem value="Página Inicial" url="/index.xhtml"></p:menuitem>
+
+                            <p:submenu label="Cadastros Gerais">
+                                <p:menuitem value="Curso" url="/admin/curso.xhtml"></p:menuitem>
+                                <p:menuitem value="Disciplina" url="/admin/disciplina.xhtml"></p:menuitem>
+                                <p:menuitem value="Professor" url="/professor/professor.xhtml"></p:menuitem>
+                                <p:menuitem value="Questões" url="/professor/questoes.xhtml"></p:menuitem>
+                                <p:menuitem value="Estudantes" url="/aluno/estudantes.xhtml"></p:menuitem>
+                                <p:menuitem value="Bairro" url="/aluno/bairro.xhtml"></p:menuitem>
+                                <p:menuitem value="Cidade" url="/aluno/cidade.xhtml"></p:menuitem>
+                                <p:menuitem value="Estado" url="/aluno/estado.xhtml"></p:menuitem>
+                            </p:submenu>
+                            <p:submenu label="Gerenciar Provas">
+                                <p:menuitem value="Criar Prova" url="/professor/criarProva.xhtml"></p:menuitem>
+                            </p:submenu>
+                            <p:submenu label="Aluno">
+                                <p:menuitem value="Realizar Prova" url="/aluno/realizarProva.xhtml" />
+                            </p:submenu>
+                            <f:facet name="options">
+                                <p:button href="/logout" value="Sair" icon="ui-icon-extlink" />
+                            </f:facet>
+                        </p:menubar>
+
+                        <p:growl autoUpdate="true" showDetail="true" />
+
+                        <ui:insert name="conteudo">
+                            <div id="corpo_login">
+                                <div id="box_logo" style="margin-top: 20%;">
+                                    <p:graphicImage value="/img/logo_sg2ai.png" cache="false"/>
+                                </div>
+                            </div>
+                        </ui:insert>
+                    </p:panel>
                 </p:layoutUnit>
-                <p:layoutUnit position="south">
-                    <h:outputText value="Trabalho PI" />
+                <p:layoutUnit position="south" style="text-align: center;">
+                    SG2AI - Desenvolvido pelo 5º Período de Sistemas de Informação - UNIPAM
                 </p:layoutUnit>
             </p:layout>
         </h:form>

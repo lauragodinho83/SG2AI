@@ -7,6 +7,7 @@ package view;
 import controller.EstudanteEJB;
 import helper.Mensagem;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -23,11 +24,16 @@ public class EstudanteMB implements java.io.Serializable {
     @EJB
     EstudanteEJB estudanteEJB;
     
-    private Estudante estudante = new Estudante();
+    private Estudante estudante;
     private List<Estudante> estudantes;
     private Estudante estudanteSelecionado;
     
     public EstudanteMB() {
+    }
+    
+    @PostConstruct
+    public void inicializar() {
+        estudante = new Estudante();
     }
 
     public Estudante getEstudante() {

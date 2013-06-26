@@ -6,7 +6,7 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://java.sun.com/jsf/core">
     
-    <ui:composition template="index.xhtml">
+    <ui:composition template="../index.xhtml">
         <ui:define name="conteudo">
             <h3 class="titulo">Estudantes</h3>
             
@@ -34,15 +34,16 @@
                     
                     <h:outputLabel value="Bairro: " />
                     <p:selectOneMenu value="#{estudanteMB.estudante.endereco.bairro.id}">
+                        <f:selectItem itemLabel="Selecione um bairro" itemValue="0" />
                         <f:selectItems value="#{bairroMB.obterTodos()}" var="bairro" itemLabel="#{bairro.descricao}" itemValue="#{bairro.id}" />
                     </p:selectOneMenu>
+                    <h:outputLabel value="" />
                     
                     <h:outputLabel value="Curso: " />
                     <p:selectOneMenu value="#{estudanteMB.estudante.curso.id}">
-                        <f:selectItem itemValue="0" itemLabel="Selecione um curso" />
-                        
+                        <f:selectItem itemLabel="Selecione um curso" itemValue="0" />
+                        <f:selectItems value="#{cursoMB.findAll()}" var="curso" itemLabel="#{curso.descricao}" itemValue="#{curso.id}" />
                     </p:selectOneMenu>
-                    
                     <p:commandButton value="Salvar" action="#{estudanteMB.salvar()}" ajax="false" />
                 </h:panelGrid>
                 

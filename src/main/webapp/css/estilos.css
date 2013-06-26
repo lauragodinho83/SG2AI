@@ -22,3 +22,85 @@ h3.titulo {
 .margemInferior {
     margin: 0 0 5px 0;
 }
+
+#box_logo{
+    margin: 0 auto;
+    display: block;
+    width: 700px;
+    height: 120px;
+    padding-top: 50px;
+}
+
+#corpo_login{
+    width: 800px;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#formulario_login{
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    background-color: #eeeeee;
+    margin: 0 auto;
+    margin-top: 15%;
+    text-align: center;
+    border: 1px #a8a8a8 solid;
+    border-radius: 5px;
+    font-size: 16px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#c5c5c5)); 
+    background: -moz-linear-gradient(top,  #eee,  #c5c5c5);
+}
+.textoLogin{
+    font-size: 14px;
+}
+
+#falha{
+    width: 500px;
+    height: auto;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 15%;
+    text-align: center;
+}
+.linkFalha{
+    text-decoration: none;
+    color: #555555;
+    font-size: 16px;
+}
+.linkFalha:hover{
+    color: #555555;
+    text-shadow: #7096ab 2px 2px 2px;
+}
+
+#botao_logar{
+    margin-top: 10px;
+    padding: 3px 5px 4px 5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#c5c5c5)); 
+    background: -moz-linear-gradient(top,  #eee,  #c5c5c5);
+    border: 1px #a8a8a8 solid;
+    border-radius: 3px;
+}
+#botao_logar:hover{
+    background: -webkit-gradient(linear, left top, left bottom, from(#c8dce7), to(#86b3cb)); 
+    background: -moz-linear-gradient(top,  #c8dce7,  #86b3cb);
+    border: 1px #7096ab solid;
+    box-shadow: #7096ab 0px 0px 7px;
+}
+
+.campo_login{
+    width: 240px;
+}
+body{
+    background-color: #f5f5f5;
+}
+#rodape{
+    width: 99%;
+    height: auto;
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    color: #555555;
+    text-shadow: #bbbbbb 2px 2px 2px;
+}
