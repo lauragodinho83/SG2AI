@@ -37,6 +37,14 @@ public class QuestaoEJB {
         return query.getResultList();
     }
     
+    
+    public List < Questao > obterQuestaoPorDisciplina (Long id) 
+    {
+       return em.createQuery( "SELECT o FROM Questao o WHERE o.id:=id" ) .setParameter("id", id) .getResultList();
+        
+       
+    }
+    
     public Questao obterPorId( Long id ) {
         Questao questao = em.find( Questao.class, id );
         

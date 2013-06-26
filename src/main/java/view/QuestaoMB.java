@@ -6,7 +6,9 @@ package view;
 
 import controller.QuestaoEJB;
 import helper.Mensagem;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -23,9 +25,24 @@ public class QuestaoMB implements java.io.Serializable{
     @EJB
     QuestaoEJB questaoEJB;
     private Questao questao;
+    private List<Questao> listaQuestao;
+
+    public List<Questao> getListaQuestao() {
+        return listaQuestao;
+    }
+
+    public void setListaQuestao(List<Questao> listaQuestao) {
+        this.listaQuestao = listaQuestao;
+    }
     
+       
     public QuestaoMB() {
         questao = new Questao();       
+    }
+    
+    @PostConstruct
+    public void inicializar(){
+        listaQuestao = new ArrayList<>(obterTodas());
     }
 
     public Questao getQuestao() {
@@ -45,6 +62,12 @@ public class QuestaoMB implements java.io.Serializable{
     
     public List<Questao> obterTodas(){
         return questaoEJB.obterTodos();
+    }
+    
+    
+    public void obterQuestaoPorDisciplina(Long id)
+    {
+        listaQuestao = questaoEJB.obterQuestaoPorDisciplina(id);
     }
     
     public void editar(Questao questao){

@@ -36,6 +36,13 @@
                     <p:selectOneMenu value="#{estudanteMB.estudante.endereco.bairro.id}">
                         <f:selectItems value="#{bairroMB.obterTodos()}" var="bairro" itemLabel="#{bairro.descricao}" itemValue="#{bairro.id}" />
                     </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Curso: " />
+                    <p:selectOneMenu value="#{estudanteMB.estudante.curso.id}">
+                        <f:selectItem itemValue="0" itemLabel="Selecione um curso" />
+                        
+                    </p:selectOneMenu>
+                    
                     <p:commandButton value="Salvar" action="#{estudanteMB.salvar()}" ajax="false" />
                 </h:panelGrid>
                 

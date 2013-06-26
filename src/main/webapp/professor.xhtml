@@ -46,6 +46,8 @@
                     <p:column headerText="Id">#{professor.id}</p:column>
                     <p:column headerText="Matrícula">#{professor.matricula}</p:column>
                     <p:column headerText="Nome">#{professor.nome}</p:column>
+                    <p:column headerText="Endereço"> Rua #{professor.endereco.rua}, Numero #{professor.endereco.numero}, Bairro #{professor.endereco.bairro.descricao} </p:column>
+                    
                     <p:column headerText="Data de Nascimento">#{professor.dataDeNascimentoFormatada}</p:column>
                     <p:column headerText="..." style="width: 7.5%;">
                         <p:commandButton icon="ui-icon-pencil" action="#{professorMB.editar( professor )}" ajax="false" />
